@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 
-s.name         = "ACProgressHud"
+s.name         = "ACProgressHUD-Swift"
 s.version      = "1.0"
 s.summary      = "Lightweight ProgressHud for iOS apps in swift with some very awesome animations."
 s.description  = <<-DESC
