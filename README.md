@@ -179,7 +179,7 @@ ACProgressHUD.shared.dismissHudAnimation = .growOut
 - If you **want to contribute**,please submit a pull request.
 
 ## License
-e ACProgressHUD is released under the MIT license. See LICENSE for details.
+ACProgressHUD is released under the MIT license. See LICENSE for details.
 
 
 ## ![ACProgressHUD](https://github.com/ErAbhishekChandani/ACProgressHUD/blob/master/ACProgressHUD/Example%20Assets/AC.png) A Control by Er. Abhishek Chandani
