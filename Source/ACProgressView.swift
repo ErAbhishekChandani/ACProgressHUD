@@ -146,8 +146,8 @@ fileprivate extension ACProgressView {
     }
     
     func loadViewFromNib() -> UIView {
-        
-        let bundle = Bundle.main
+       
+        let bundle = Bundle(for: ACProgressView.self)
         let nib = UINib(nibName: "ACProgressView", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         
