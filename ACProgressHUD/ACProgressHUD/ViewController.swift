@@ -60,9 +60,7 @@ extension ViewController {
         ACProgressHUD.shared.enableBlurBackground = (sender as! UISwitch).isOn
     }
     @IBAction func actionOnShow(_ sender: AnyObject) {
-        let progressView = ACProgressHUD.shared
-        progressView.progressText = "Please wait..."
-        progressView.showHUD()
+        ACProgressHUD.shared.showHUD(withStatus: "Loading...")
         self.perform(#selector(self.hideHUD), with: nil, afterDelay: 5.0)
     }
     @IBAction func actionShowWithDifferentText(_ sender: AnyObject) {

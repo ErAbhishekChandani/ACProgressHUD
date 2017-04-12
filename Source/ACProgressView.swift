@@ -1,3 +1,27 @@
+/*
+ MIT License
+ 
+ Copyright (c) 2017 Er Abhishek Chandnai
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+ */
+
 //
 //  ACProgressView.swift
 //  ACProgressHUD
@@ -10,7 +34,7 @@ import UIKit
 
 class ACProgressView: UIView {
 
-    var view:UIView!;
+    var view:UIView!
 
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var hudView: UIView!
@@ -42,7 +66,7 @@ class ACProgressView: UIView {
                 if (window.windowLevel == UIWindowLevelNormal) {
                     window.addSubview(self.view)
                     self.view.frame = window.bounds
-                    break;
+                    break
                 }
             }
             
@@ -142,7 +166,7 @@ fileprivate extension ACProgressView {
         view.frame = bounds
         self.addSubview(view)
         
-        customizeAppeareance()
+        appeareance()
     }
     
     func loadViewFromNib() -> UIView {
@@ -154,16 +178,18 @@ fileprivate extension ACProgressView {
         return view
     }
     
-    // Customization....
-    func customizeAppeareance(){
+    /// Customization HUD appeareance
+    func appeareance(){
     
+        self.textLabel.text = ACProgressHUD.shared.progressText
+        self.activityIndicator.color = ACProgressHUD.shared.indicatorColor
+        
         self.hudView.backgroundColor = ACProgressHUD.shared.hudBackgroundColor
+        self.hudView.layer.cornerRadius = ACProgressHUD.shared.cornerRadius
         self.hudView.layer.shadowColor = ACProgressHUD.shared.shadowColor.cgColor
         self.hudView.layer.shadowRadius = ACProgressHUD.shared.shadowRadius
-        self.hudView.layer.shadowOpacity = 0.3
-        self.hudView.layer.shadowOffset =  CGSize(width: 1.0, height: 1)
-        self.hudView.layer.masksToBounds = true
-        self.hudView.layer.cornerRadius = ACProgressHUD.shared.cornerRadius
+        self.hudView.layer.shadowOpacity = 0.7
+        self.hudView.layer.shadowOffset =  CGSize(width:1,height:1)
 
         self.view.backgroundColor =  ACProgressHUD.shared.enableBackground == true ? ACProgressHUD.shared.backgroundColor.withAlphaComponent(ACProgressHUD.shared.backgroundColorAlpha) : UIColor.clear
         self.blurView.isHidden = ACProgressHUD.shared.enableBlurBackground == true ? false : true
