@@ -40,6 +40,9 @@ open class ACProgressHUD : NSObject {
     /// Set the Text in Progress label.
     open var progressText : String = "Please wait..."
     
+    /// Set the Text Color in Progress label.
+    open var progressTextColor : UIColor = UIColor.black
+
     /// Set the Hud **Shadow Color**.
     open var shadowColor : UIColor = UIColor.black
 
@@ -85,6 +88,7 @@ open class ACProgressHUD : NSObject {
      - Configure HUD style through out the app.
      
      - Parameter text: Set the Text in Progress label.
+     - Parameter progressTextColor: Set the Text Color in Progress label.
      - Parameter hudBackgroundColor: Change the **Background Color** of Hud View.
      - Parameter shadowColor: Set the Hud **Shadow Color**.
      - Parameter shadowRadius: Set the **Shadow Radius** of Hud View.
@@ -98,9 +102,10 @@ open class ACProgressHUD : NSObject {
      - Parameter dismissHudAnimation: Change Animation when Dismiss HUD.
      
      */
-    open func configureProgressHudStyle(withProgressText text:String,hudBackgroundColor hcolor:UIColor,shadowColor scolor:UIColor,shadowRadius sradius:CGFloat,cornerRadius cradius:CGFloat,indicatorColor icolor:UIColor,enableBackground enable:Bool,backgroundColor bcolor:UIColor,backgroundColorAlpha balpha:CGFloat,enableBlurBackground blenable:Bool,showHudAnimation sanimation:ACHudShowAnimation,dismissHudAnimation danimation:ACHudDismissAnimation) {
+    open func configureProgressHudStyle(withProgressText text:String,progressTextColor tcolor:UIColor,hudBackgroundColor hcolor:UIColor,shadowColor scolor:UIColor,shadowRadius sradius:CGFloat,cornerRadius cradius:CGFloat,indicatorColor icolor:UIColor,enableBackground enable:Bool,backgroundColor bcolor:UIColor,backgroundColorAlpha balpha:CGFloat,enableBlurBackground blenable:Bool,showHudAnimation sanimation:ACHudShowAnimation,dismissHudAnimation danimation:ACHudDismissAnimation) {
     
         progressText = text
+        progressTextColor = tcolor
         hudBackgroundColor = hcolor
         shadowColor = scolor
         shadowRadius = sradius

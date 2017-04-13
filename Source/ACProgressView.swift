@@ -182,6 +182,7 @@ fileprivate extension ACProgressView {
     func appeareance(){
     
         self.textLabel.text = ACProgressHUD.shared.progressText
+        self.textLabel.textColor = ACProgressHUD.shared.progressTextColor
         self.activityIndicator.color = ACProgressHUD.shared.indicatorColor
         
         self.hudView.backgroundColor = ACProgressHUD.shared.hudBackgroundColor
