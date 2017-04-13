@@ -102,7 +102,7 @@ ACProgressHUD.shared.progressText = "Please wait..."
 
 ```swift
 
-ACProgressHUD.shared.shadowColor = UIColor.black
+ACProgressHUD.shared.shadowColor = .black
 
 ```
 **4) Change progress HUD Shadow Radius.**
@@ -124,14 +124,14 @@ ACProgressHUD.shared.cornerRadius = 10.0
 
 ```swift
 
-ACProgressHUD.shared.indicatorColor = UIColor.black
+ACProgressHUD.shared.indicatorColor = .black
 
 ```
 **7) Change HUD Background color.**
 
 ```swift
 
-ACProgressHUD.shared.hudBackgroundColor = UIColor.black
+ACProgressHUD.shared.hudBackgroundColor = .black
 
 ```
 **8) Show or hide Dim background when Progress View is shown.**
@@ -174,7 +174,7 @@ ACProgressHUD.shared.dismissHudAnimation = .growOut
 
 ```swift
 
-ACProgressHUD.shared.dismissHudAnimation = .growOut
+ACProgressHUD.shared.progressTextColor = .black
 
 ```
 
