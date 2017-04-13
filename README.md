@@ -18,7 +18,7 @@ Lightweight control to show customisable Progress View in swift.
 #### Installation with Cocopods
 
 
-<div class="highlight highlight-source-shell"><pre>pod 'ACProgressHUD-Swift', '~> 1.1' </pre></div>
+<div class="highlight highlight-source-shell"><pre>pod 'ACProgressHUD-Swift', '~> 1.2' </pre></div>
 
 #### Manual Installation
 
@@ -164,6 +164,13 @@ ACProgressHUD.shared.showHudAnimation = .growIn
 
 ```
 **12) Select HUD Dismiss animation.**
+
+```swift
+
+ACProgressHUD.shared.dismissHudAnimation = .growOut
+
+```
+**13) Change Progress label text color.**
 
 ```swift
 
