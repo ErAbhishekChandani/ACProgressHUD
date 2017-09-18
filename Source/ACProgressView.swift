@@ -183,6 +183,7 @@ fileprivate extension ACProgressView {
     
         self.textLabel.text = ACProgressHUD.shared.progressText
         self.textLabel.textColor = ACProgressHUD.shared.progressTextColor
+        self.textLabel.font = ACProgressHUD.shared.progressTextFont
         self.activityIndicator.color = ACProgressHUD.shared.indicatorColor
         
         self.hudView.backgroundColor = ACProgressHUD.shared.hudBackgroundColor
