@@ -32,16 +32,24 @@
 
 import UIKit
 
-class ACProgressView: UIView {
-
-    var view:UIView!
-
-    @IBOutlet weak var blurView: UIVisualEffectView!
-    @IBOutlet weak var hudView: UIView!
-    @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+final class ACProgressView: UIView {
     
-    //MARK:- Initialization
+    //MARK: - Outlets
+    @IBOutlet internal weak var blurView: UIVisualEffectView!
+    @IBOutlet internal weak var hudView: UIView!
+    @IBOutlet internal weak var textLabel: UILabel!
+    @IBOutlet internal weak var activityIndicator: UIActivityIndicatorView!
+    
+    
+    //MARK: - Variables
+    var view: UIView!
+    fileprivate let progressHud = ACProgressHUD.shared
+    fileprivate class var reuseIdentifier: String {
+        return String(describing: self)
+    }
+    
+    
+    //MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         xibSetup()
@@ -59,7 +67,7 @@ class ACProgressView: UIView {
     
     //MARK:- SHOW HUD
     func show(){
-    
+        
         DispatchQueue.main.async {
             let allWindows = UIApplication.shared.windows.reversed()
             for window in allWindows {
@@ -71,15 +79,15 @@ class ACProgressView: UIView {
             }
             
             //BACKGROUND ANIMATION
-            if ACProgressHUD.shared.enableBackground {
+            if self.progressHud.enableBackground {
                 
                 self.view.backgroundColor = self.view.backgroundColor?.withAlphaComponent(0)
                 UIView.animate(withDuration: 0.30, delay: 0, options: .curveLinear, animations: {
-                    self.view.backgroundColor = self.view.backgroundColor?.withAlphaComponent(ACProgressHUD.shared.backgroundColorAlpha)
-                    }, completion: nil)
+                    self.view.backgroundColor = self.view.backgroundColor?.withAlphaComponent(self.progressHud.backgroundColorAlpha)
+                }, completion: nil)
             }
             // HUD ANIMATION
-            switch ACProgressHUD.shared.showHudAnimation {
+            switch self.progressHud.showHudAnimation {
                 
             case .growIn :
                 self.growIn()
@@ -101,7 +109,7 @@ class ACProgressView: UIView {
                 break
             default :
                 break
-
+                
             }
         }
     }
@@ -111,15 +119,15 @@ class ACProgressView: UIView {
         DispatchQueue.main.async {
             
             //BACKGROUND ANIMATION
-            if ACProgressHUD.shared.enableBackground {
+            if self.progressHud.enableBackground {
                 
-                self.view.backgroundColor = self.view.backgroundColor?.withAlphaComponent(ACProgressHUD.shared.backgroundColorAlpha)
+                self.view.backgroundColor = self.view.backgroundColor?.withAlphaComponent(self.progressHud.backgroundColorAlpha)
                 UIView.animate(withDuration: 0.30, delay: 0, options: .curveLinear, animations: {
                     self.view.backgroundColor = self.view.backgroundColor?.withAlphaComponent(0)
-                    }, completion: nil)
+                }, completion: nil)
             }
-
-            switch ACProgressHUD.shared.dismissHudAnimation {
+            
+            switch self.progressHud.dismissHudAnimation {
                 
             case .growOut :
                 self.growOut()
@@ -145,65 +153,64 @@ class ACProgressView: UIView {
             case .bounceToBottom :
                 self.bounceToBottom()
                 break
-
+                
             default :
                 self.view.removeFromSuperview()
                 break
             }
-
         }
     }
-
 }
 
 //MARK:- Private Methods
 fileprivate extension ACProgressView {
-
+    
     // Loading Xib
     func xibSetup() {
         
         view = loadViewFromNib()
-        view.frame = bounds
         self.addSubview(view)
         
+        view.frame = bounds
         appeareance()
     }
     
     func loadViewFromNib() -> UIView {
-       
+        
         let bundle = Bundle(for: ACProgressView.self)
-        let nib = UINib(nibName: "ACProgressView", bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
+        let nib = UINib(nibName: ACProgressView.reuseIdentifier, bundle: bundle)
+        guard let view = nib.instantiate(withOwner: self, options: nil)[0] as? UIView else {
+            fatalError("ERROR loading ACProgressView.\n\(#file)\n\(#line)")
+        }
         
         return view
     }
     
     /// Customization HUD appeareance
     func appeareance(){
-    
-        self.textLabel.text = ACProgressHUD.shared.progressText
-        self.textLabel.textColor = ACProgressHUD.shared.progressTextColor
-        self.textLabel.font = ACProgressHUD.shared.progressTextFont
-        self.activityIndicator.color = ACProgressHUD.shared.indicatorColor
         
-        self.hudView.backgroundColor = ACProgressHUD.shared.hudBackgroundColor
-        self.hudView.layer.cornerRadius = ACProgressHUD.shared.cornerRadius
-        self.hudView.layer.shadowColor = ACProgressHUD.shared.shadowColor.cgColor
-        self.hudView.layer.shadowRadius = ACProgressHUD.shared.shadowRadius
+        self.textLabel.text = progressHud.progressText
+        self.textLabel.textColor = progressHud.progressTextColor
+        self.textLabel.font = progressHud.progressTextFont
+        self.activityIndicator.color = progressHud.indicatorColor
+        
+        self.hudView.backgroundColor = progressHud.hudBackgroundColor
+        self.hudView.layer.cornerRadius = progressHud.cornerRadius
+        self.hudView.layer.shadowColor = progressHud.shadowColor.cgColor
+        self.hudView.layer.shadowRadius = progressHud.shadowRadius
         self.hudView.layer.shadowOpacity = 0.7
-        self.hudView.layer.shadowOffset =  CGSize(width:1,height:1)
-
-        self.view.backgroundColor =  ACProgressHUD.shared.enableBackground == true ? ACProgressHUD.shared.backgroundColor.withAlphaComponent(ACProgressHUD.shared.backgroundColorAlpha) : UIColor.clear
-        self.blurView.isHidden = ACProgressHUD.shared.enableBlurBackground == true ? false : true
-
+        self.hudView.layer.shadowOffset =  CGSize(width: 1, height: 1)
+        
+        self.view.backgroundColor =  progressHud.enableBackground == true ? progressHud.backgroundColor.withAlphaComponent(progressHud.backgroundColorAlpha) : .clear
+        self.blurView.isHidden = progressHud.enableBlurBackground == true ? false : true
+        
         if  !self.blurView.isHidden {
-            self.view.backgroundColor = ACProgressHUD.shared.blurBackgroundColor
+            self.view.backgroundColor = progressHud.blurBackgroundColor
         }
     }
-    
 }
 
-//MARK:- Orientation
+//MARK: - Orientation
 //Window will not change Orientation when ACProgressHUD is being Shown.
 extension UINavigationController {
     
@@ -211,7 +218,7 @@ extension UINavigationController {
         
         if ACProgressHUD.shared.isBeingShown {
             return false
-        }else{
+        } else {
             return true
         }
     }

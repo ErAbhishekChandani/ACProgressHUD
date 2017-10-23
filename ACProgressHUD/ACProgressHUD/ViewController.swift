@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     }
 
     //MARK:- Other Methods
-    func hideHUD(){
+    @objc func hideHUD(){
         ACProgressHUD.shared.hideHUD()
     }
 
