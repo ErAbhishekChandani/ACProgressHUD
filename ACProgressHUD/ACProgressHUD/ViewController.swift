@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     //MARK:- UIView Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        ACProgressHUD.shared.showHUD()
     }
     
     override func viewWillAppear(_ animated: Bool) {
