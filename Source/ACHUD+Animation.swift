@@ -33,7 +33,7 @@
 import Foundation
 import UIKit
 
-//MARK:- Show Animation Structure
+//MARK: - Show Animation Structure
 /**
     Animations types when showing Progress HUD
  
@@ -45,19 +45,17 @@ import UIKit
     - bounceFromTop :- Show HUD with Bounce from Top Animation.
     - none          :- Show HUD without animation.
  */
-public enum ACHudShowAnimation : Int {
-
-    case growIn = 0
+public enum ACHudShowAnimation: Int {
+    case growIn
     case shrinkIn
     case bounceIn
     case zoomInOut
     case slideFromTop
     case bounceFromTop
     case none
-
 }
 
-//MARK:- Dismiss Animation Structure
+//MARK: - Dismiss Animation Structure
 /**
  Animations types when Dismiss Progress HUD
  
@@ -71,9 +69,8 @@ public enum ACHudShowAnimation : Int {
  - bounceToBottom :- Dismiss HUD with Bounce to Bottom Animation.
  - none           :- Dismiss HUD without animation.
  */
-public enum ACHudDismissAnimation : Int {
-    
-    case growOut = 0
+public enum ACHudDismissAnimation: Int {
+    case growOut
     case shrinkOut
     case fadeOut
     case bounceOut
@@ -82,10 +79,9 @@ public enum ACHudDismissAnimation : Int {
     case bounceToTop
     case bounceToBottom
     case none
-
 }
 
-//MARK:-------------------------HUD SHOW ANIMATION METHOD--------------------------
+//MARK: - HUD SHOW ANIMATION METHODS
 extension ACProgressView {
     
     func growIn() -> Void {
@@ -109,13 +105,12 @@ extension ACProgressView {
         hudView.alpha = 0.0
         hudView.transform = CGAffineTransform.init(scaleX: 1.50, y: 1.50)
         
-        UIView.animate(withDuration: 0.2, delay: 0, options:  UIViewAnimationOptions(rawValue: 458752), animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(rawValue: 458752), animations: {
             
             self.hudView.alpha = 1.0
             self.hudView.transform = CGAffineTransform.identity
             
             }, completion: nil)
-        
     }
     
     func slideFromTop() -> Void {
@@ -127,36 +122,33 @@ extension ACProgressView {
         startFrame.origin.y = -hudView.frame.height
         hudView.frame = startFrame
         
-        UIView.animate(withDuration: 0.30, delay: 0, options: UIViewAnimationOptions(rawValue: 458752), animations: {
-            self.hudView.frame = finalFrame
-            
-            }, completion: nil)
-        
+        UIView.animate(withDuration: 0.30,
+                       delay: 0,
+                       options: UIViewAnimationOptions(rawValue: 458752),
+                       animations: { self.hudView.frame = finalFrame },
+                       completion: nil)
     }
     
     func zoomInZoomOut() {
         
         hudView.isHidden = false
         hudView.transform = CGAffineTransform.init(scaleX: 0.001, y: 0.001)
-        UIView.animate(withDuration: 0.3/1.5, animations: { () -> Void in
-            self.hudView.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
-            
-        }) { (completion) -> Void in
-            
-            UIView.animate(withDuration: 0.3/1.5, animations: { () -> Void in
-                self.hudView.transform = CGAffineTransform.init(scaleX: 0.6, y: 0.6)
-            }) { (completion) -> Void in
-                
-                UIView.animate(withDuration: 0.3/1.5, animations: { () -> Void in
-                    self.hudView.transform = CGAffineTransform.identity
-                }) { (completion) -> Void in
-                    
-                }
-            }
+        
+        UIView.animate(withDuration: 0.3/1.5,
+                       animations: { self.hudView.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1) }) { _ in
+                        
+                        UIView.animate(withDuration: 0.3/1.5,
+                                       animations: { self.hudView.transform = CGAffineTransform.init(scaleX: 0.6, y: 0.6) }) { _ in
+                                        
+                                        UIView.animate(withDuration: 0.3/1.5,
+                                                       animations: { self.hudView.transform = CGAffineTransform.identity }) { _ in
+                                                        
+                                        }
+                        }
         }
     }
     
-    func bounceIn(){
+    func bounceIn() {
         
         hudView.alpha = 0.0
         hudView.isHidden = false
@@ -188,16 +180,14 @@ extension ACProgressView {
     
 }
 
-//MARK:-------------------------HUD Dismiss ANIMATION METHOD--------------------------
+//MARK: - HUD Dismiss ANIMATION METHODS
 extension ACProgressView {
     
     func fadeOut() -> Void {
-        UIView.animate(withDuration: 0.30, delay: 0, options: .curveLinear, animations: {
-            self.hudView.alpha = 0.0
-        }) { (completed) in
-            self.view.removeFromSuperview()
-            
-        }
+        UIView.animate(withDuration: 0.30,
+                       delay: 0,
+                       options: .curveLinear,
+                       animations: { self.hudView.alpha = 0.0 }) { _ in self.view.removeFromSuperview() }
     }
     
     func growOut() -> Void {
@@ -205,7 +195,7 @@ extension ACProgressView {
             self.hudView.alpha = 0.0
             self.hudView.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
             
-        }) { (completed) in
+        }) { _ in
             self.view.removeFromSuperview()
         }
     }
@@ -215,7 +205,7 @@ extension ACProgressView {
             self.hudView.alpha = 0.0
             self.hudView.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
             
-        }) { (completed) in
+        }) { _ in
             self.view.removeFromSuperview()
             
         }
@@ -227,7 +217,7 @@ extension ACProgressView {
             startFrame.origin.y = -self.hudView.frame.height
             self.hudView.frame = startFrame
             
-        }) { (completed) in
+        }) { _ in
             self.view.removeFromSuperview()
         }
     }
@@ -238,7 +228,7 @@ extension ACProgressView {
             startFrame.origin.y = UIScreen.main.bounds.height
             self.hudView.frame = startFrame
             
-        }) { (completed) in
+        }) { _ in
             self.view.removeFromSuperview()
         }
     }
@@ -247,14 +237,13 @@ extension ACProgressView {
         
         UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
             self.hudView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        }) { (finished) in
+        }) { _ in
             UIView.animate(withDuration: 0.30, delay: 0, options: .curveEaseIn, animations: {
+                
                 self.hudView.alpha = 0.0
                 self.hudView.transform = CGAffineTransform.init(scaleX: 0.3, y: 0.3)
-            }) { (finished) in
-                self.view.removeFromSuperview()
                 
-            }
+            }) { _ in self.view.removeFromSuperview() }
         }
     }
     
@@ -266,49 +255,32 @@ extension ACProgressView {
             frame.origin.y += 45
             self.hudView.frame = frame
             
-        }) { (completed) in
-            
+        }) { _ in
             UIView.animate(withDuration: 0.40, delay: 0, options: .curveEaseIn, animations: {
                 
                 var frame = self.hudView.frame
                 frame.origin.y = -(UIScreen.main.bounds.height)
                 self.hudView.frame = frame
                 
-            }) { (completed) in
-                
-                self.view.removeFromSuperview()
-                
-            }
-            
+            }) { _ in self.view.removeFromSuperview() }
         }
-        
     }
     
     func bounceToBottom() {
         
         UIView.animate(withDuration: 0.30, delay: 0, options: .curveEaseOut, animations: {
-            
             var frame = self.hudView.frame
             frame.origin.y -= 45
             self.hudView.frame = frame
             
-        }) { (completed) in
-            
+        }) { _ in
             UIView.animate(withDuration: 0.40, delay: 0, options: .curveEaseIn, animations: {
                 
                 var frame = self.hudView.frame
                 frame.origin.y = UIScreen.main.bounds.height
                 self.hudView.frame = frame
                 
-            }) { (completed) in
-                
-                self.view.removeFromSuperview()
-                
-            }
-            
+            }) { _ in self.view.removeFromSuperview() }
         }
-        
     }
-    
-    
 }

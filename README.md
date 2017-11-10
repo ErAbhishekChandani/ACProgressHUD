@@ -18,7 +18,7 @@ Lightweight control to show customisable Progress View in swift.
 #### Installation with Cocopods
 
 
-<div class="highlight highlight-source-shell"><pre>pod 'ACProgressHUD-Swift', '~> 1.1' </pre></div>
+<div class="highlight highlight-source-shell"><pre>pod 'ACProgressHUD-Swift', '~> 1.2' </pre></div>
 
 #### Manual Installation
 
@@ -102,7 +102,7 @@ ACProgressHUD.shared.progressText = "Please wait..."
 
 ```swift
 
-ACProgressHUD.shared.shadowColor = UIColor.black
+ACProgressHUD.shared.shadowColor = .black
 
 ```
 **4) Change progress HUD Shadow Radius.**
@@ -124,14 +124,14 @@ ACProgressHUD.shared.cornerRadius = 10.0
 
 ```swift
 
-ACProgressHUD.shared.indicatorColor = UIColor.black
+ACProgressHUD.shared.indicatorColor = .black
 
 ```
 **7) Change HUD Background color.**
 
 ```swift
 
-ACProgressHUD.shared.hudBackgroundColor = UIColor.black
+ACProgressHUD.shared.hudBackgroundColor = .black
 
 ```
 **8) Show or hide Dim background when Progress View is shown.**
@@ -168,6 +168,13 @@ ACProgressHUD.shared.showHudAnimation = .growIn
 ```swift
 
 ACProgressHUD.shared.dismissHudAnimation = .growOut
+
+```
+**13) Change Progress label text color.**
+
+```swift
+
+ACProgressHUD.shared.progressTextColor = .black
 
 ```
 
