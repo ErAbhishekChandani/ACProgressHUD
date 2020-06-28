@@ -90,7 +90,7 @@ extension ACProgressView {
         hudView.alpha = 0.1
         hudView.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
         
-        UIView.animate(withDuration: 0.2, delay: 0, options:  UIViewAnimationOptions(rawValue: 458752), animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options:  UIView.AnimationOptions(rawValue: 458752), animations: {
             
             self.hudView.alpha = 1.0
             self.hudView.transform = CGAffineTransform.identity
@@ -105,7 +105,7 @@ extension ACProgressView {
         hudView.alpha = 0.0
         hudView.transform = CGAffineTransform.init(scaleX: 1.50, y: 1.50)
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(rawValue: 458752), animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions(rawValue: 458752), animations: {
             
             self.hudView.alpha = 1.0
             self.hudView.transform = CGAffineTransform.identity
@@ -124,7 +124,7 @@ extension ACProgressView {
         
         UIView.animate(withDuration: 0.30,
                        delay: 0,
-                       options: UIViewAnimationOptions(rawValue: 458752),
+                       options: UIView.AnimationOptions(rawValue: 458752),
                        animations: { self.hudView.frame = finalFrame },
                        completion: nil)
     }
@@ -154,7 +154,7 @@ extension ACProgressView {
         hudView.isHidden = false
         hudView.transform = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
         
-        UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.5, options: UIViewAnimationOptions(rawValue: 0), animations: {
+        UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.5, options: UIView.AnimationOptions(rawValue: 0), animations: {
             self.hudView.alpha = 1.0
             self.hudView.transform = CGAffineTransform.identity
             }, completion: nil)
@@ -171,7 +171,7 @@ extension ACProgressView {
         startFrame.origin.y = -finalFrame.height
         hudView.frame = startFrame
         
-        UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: UIViewAnimationOptions(rawValue: 0), animations: {
+        UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: UIView.AnimationOptions(rawValue: 0), animations: {
             self.hudView.alpha = 1.0
             self.hudView.transform = CGAffineTransform.identity
             self.hudView.frame = finalFrame
@@ -191,7 +191,7 @@ extension ACProgressView {
     }
     
     func growOut() -> Void {
-        UIView.animate(withDuration: 1.1, delay: 0, options: UIViewAnimationOptions(rawValue: 458752), animations: {
+        UIView.animate(withDuration: 1.1, delay: 0, options: UIView.AnimationOptions(rawValue: 458752), animations: {
             self.hudView.alpha = 0.0
             self.hudView.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
             
@@ -201,7 +201,7 @@ extension ACProgressView {
     }
     
     func shrinkOut() -> Void {
-        UIView.animate(withDuration: 1.1, delay: 0, options: UIViewAnimationOptions(rawValue: 458752), animations: {
+        UIView.animate(withDuration: 1.1, delay: 0, options: UIView.AnimationOptions(rawValue: 458752), animations: {
             self.hudView.alpha = 0.0
             self.hudView.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
             
@@ -212,7 +212,7 @@ extension ACProgressView {
     }
     
     func slideToTop() -> Void {
-        UIView.animate(withDuration: 0.15, delay: 0, options: UIViewAnimationOptions(rawValue: 458752), animations: {
+        UIView.animate(withDuration: 0.15, delay: 0, options: UIView.AnimationOptions(rawValue: 458752), animations: {
             var startFrame = self.hudView.frame
             startFrame.origin.y = -self.hudView.frame.height
             self.hudView.frame = startFrame
@@ -223,7 +223,7 @@ extension ACProgressView {
     }
     
     func slideToBottom() -> Void {
-        UIView.animate(withDuration: 0.15, delay: 0, options: UIViewAnimationOptions(rawValue: 458752), animations: {
+        UIView.animate(withDuration: 0.15, delay: 0, options: UIView.AnimationOptions(rawValue: 458752), animations: {
             var startFrame = self.hudView.frame
             startFrame.origin.y = UIScreen.main.bounds.height
             self.hudView.frame = startFrame

@@ -71,7 +71,7 @@ final class ACProgressView: UIView {
         DispatchQueue.main.async {
             let allWindows = UIApplication.shared.windows.reversed()
             for window in allWindows {
-                if (window.windowLevel == UIWindowLevelNormal) {
+                if (window.windowLevel == UIWindow.Level.normal) {
                     window.addSubview(self.view)
                     self.view.frame = window.bounds
                     break
